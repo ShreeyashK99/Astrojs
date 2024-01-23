@@ -50,7 +50,7 @@ const SignUp = () => {
         <div className="flex items-center justify-between">
           <img
             className="ml-6 h-10 w-auto"
-            src="https://magicainew.codeshastra.dev/assets/img/logo/magicAI-logo.svg"
+            src="https://magicai.liquid-themes.com/assets/img/logo/magicAI-logo.svg"
             alt="Your Company"
           />
           <p className="mr-6 text-right absolute right-0 text-white">
