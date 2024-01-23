@@ -59,9 +59,11 @@ const SignUp = () => {
         </div>
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm relative top-4 left-20">
-          <h2 className="mt-10 ml-16 text-3xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign Up
-          </h2>
+        <h2 className="mt-10 ml-0 left-0 text-3xl font-bold leading-9 tracking-tight text-gray-900">
+          Sign Up
+        </h2>
+
+
         </div>
         <br></br>
 
@@ -180,34 +182,35 @@ const SignUp = () => {
 
       {/* Right Column */}
       <div className="flex-1 relative">
-        <div className="flex justify-end items-center h-full">
-          {/* Image container */}
-          <img
-            className="w-full h-auto"
-            src="https://magicai.liquid-themes.com/images/bg/bg-auth.jpg"
-            alt="Background Auth"
-            style={{ position: "absolute", zIndex: "-1" }}
-          />
-          <div
-            style={{
-              overflow: "hidden",
-              width: "100%",
-            }}
-          >
-            <img
-              className="w-full h-auto"
-              src="https://magicai.liquid-themes.com/images/bg/dash-mockup.jpg"
-              alt="Dashboard Mockup"
-              style={{
-                marginRight: "-25%",
-                marginLeft: "auto",
-                width: "150%",
-                height: "150%",
-              }}
-            />
-          </div>
-        </div>
-      </div>
+  <div className="flex justify-end items-center h-full">
+    {/* Image container */}
+    <img
+      className="w-full h-full object-cover"
+      src="https://magicai.liquid-themes.com/images/bg/bg-auth.jpg"
+      alt="Background Auth"
+      style={{ position: "absolute", zIndex: "-1" }}
+    />
+    <div
+      style={{
+        overflow: "hidden",
+        width: "100%",
+      }}
+    >
+      <img
+        className="w-full h-auto"
+        src="https://magicai.liquid-themes.com/images/bg/dash-mockup.jpg"
+        alt="Dashboard Mockup"
+        style={{
+          marginRight: "-25%",
+          marginLeft: "auto",
+          width: "150%",
+          height: "150%",
+        }}
+      />
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };
