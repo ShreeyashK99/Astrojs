@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "density-dwarf",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -26,6 +26,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.12"
   }
 }
