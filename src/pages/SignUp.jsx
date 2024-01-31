@@ -26,11 +26,15 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       if (formData.password !== formData.cpassword) {
         throw new Error("Passwords do not match");
       }
-  
+      const nameRegex = /^[A-Za-z]+$/;
+      if (!nameRegex.test(formData.fname) || !nameRegex.test(formData.lname)) {
+        throw new Error("Only alphabets are allowed for First Name and Last Name.");
+      }
       const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
@@ -39,46 +43,28 @@ const SignUp = () => {
           last_name: formData.lname,
         },
       });
-  
+
       if (error) {
         throw error;
       }
-  
-      const { data: insertData, error: insertError } = await supabase
-        .from("users")
-        .upsert(
-          [
-            {
-              firstname: formData.fname,
-              lastname: formData.lname,
-              email: formData.email,
-              password: formData.password,
-            },
-          ],
-          { onConflict: ["email"] }
-        );
-  
-      if (insertError) {
-        throw insertError;
-      }
-  
       alert("Check your email for a verification link");
     } catch (error) {
       alert(error);
     }
+
   };
   
 
   return (
     <>
       <div className="grid sm:grid-cols-2 ">
-        <div className="col-span-full fixed overflow-x-hidden w-screen z-10 sm:text-white flex items-center justify-between py-2 sm:px-24 px-2">
+        <div className="col-span-full absolute overflow-x-hidden w-screen z-10 sm:text-white flex items-center justify-between py-2 sm:px-24 px-2">
           <div>
-            <img src={logo.src} alt="" className="object-cover h-20" />
+            <a href="#"><img src={logo.src} alt="" className="object-cover h-20" /></a>
           </div>
-          <div className="flex items-center">
-            <HiOutlineChevronLeft className="me-2 cursor-pointer" /> Back to Home
-          </div>
+          <a href="#"><div className="flex items-center">
+         <HiOutlineChevronLeft className="me-2" /> Back to Home
+          </div></a>
         </div>
         <div className="h-screen grid  justify-center">
           <div className="mt-32">
@@ -91,10 +77,13 @@ const SignUp = () => {
                 <TextInput
                   id="fname"
                   type="text"
+                  placeholder="Enter your first name"
                   required
                   shadow
                   value={formData.fname}
                   onChange={handleChange}
+                  minLength={3}
+                  maxLength={50}
                 />
               </div>
               <div>
@@ -104,10 +93,13 @@ const SignUp = () => {
                 <TextInput
                   id="lname"
                   type="text"
+                  placeholder="Enter your last name"
                   required
                   shadow
                   value={formData.lname}
                   onChange={handleChange}
+                  minLength={3}
+                  maxLength={50}
                 />
               </div>
               <div>
@@ -117,6 +109,7 @@ const SignUp = () => {
                 <TextInput
                   id="email"
                   type="email"
+                  placeholder="Enter your email address"
                   required
                   shadow
                   value={formData.email}
@@ -131,10 +124,13 @@ const SignUp = () => {
                   <TextInput
                     id="password"
                     type="password"
+                    placeholder="Enter your password"
                     required
                     shadow
                     value={formData.password}
                     onChange={handleChange}
+                    minLength={3}
+                    maxLength={50}
                   />
                 </div>
               </div>
@@ -146,10 +142,13 @@ const SignUp = () => {
                   <TextInput
                     id="cpassword"
                     type="password"
+                    placeholder="Confirm your password"
                     required
                     shadow
                     value={formData.cpassword}
                     onChange={handleChange}
+                    minLength={3}
+                    maxLength={50}
                   />
                 </div>
               </div>
@@ -161,7 +160,7 @@ const SignUp = () => {
                   </Label>
                 </div>
                 <div>
-                  <Label className="flex">Forget Password</Label>
+                <Label className="flex"><a href="#">Forget Password</a></Label>
                 </div>
               </div>
               <div className="mt-5">
@@ -176,7 +175,7 @@ const SignUp = () => {
                 <h2>
                   Have an account?{" "}
                   <a
-                    href="/login"
+                    href="#"
                     className="text-indigo-700 font-medium underline decoration-solid"
                   >
                     Sign in
@@ -191,7 +190,7 @@ const SignUp = () => {
           <img
             src={dashMockup.src}
             alt=""
-            className="h-96 rounded-3xl absolute top-20 right-10 translate-y-52 translate-x-40"
+            className="h-96 rounded-3xl absolute top-6 -right-6 translate-y-52 translate-x-40"
           />
         </div>
       </div>
