@@ -25,7 +25,14 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+
+    const passwordRegex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+      if (!passwordRegex.test(formData.password)) {
+        throw new Error(
+          "Requires at least one lowercase letter,uppercase letter, special character, and number."
+        );
+      }
 
     try {
       if (formData.password !== formData.cpassword) {
